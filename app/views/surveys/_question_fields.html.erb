@@ -1,0 +1,26 @@
+<div class="fields">
+  <p>
+    <%= f.label :content, "Question" %>
+    <%= f.text_area :content, :rows => 3 %>
+    <%= link_to_remove_fields "remove", f %>
+  </p>
+  <%= f.select :qtype, options_for_select([["Select answer type", ""], "Text Box","Multiple Choice(single answer)","Multiple Choice(multiple answers)"]), {}, :class => 'genForm_dropBox' %><br />
+  <div id = "OptData" style="display: none">
+    <%= f.fields_for :options do |builder| %>
+    <%= render 'option_fields', :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Add Option", f, :options %></p>
+  </div>
+  <%= f.check_box :mandatory %> Check if this is a Mandatory Question
+</div><br/>
+
+<%= javascript_tag :defer => 'defer' do %>
+  $(document).ready(function() {
+  $('.genForm_dropBox').change(function() {
+  if(($(this).val() == "Multiple Choice(single answer)") || ($(this).val() =="Multiple Choice(multiple answers)" ))
+  $(this).closest('.fields').children('#OptData').show();
+  else
+  $(this).closest('.fields').children('#OptData').hide();
+  });
+  });
+<% end %>

@@ -1,0 +1,11 @@
+<ol>
+  <% for answer in @answer %>
+    <ul>
+      <li><%= h answer.question.content %></li>
+      <%= h answer.content %>
+    </ul>
+  <% end %>
+</ol>
+
+
+<h>Survey Successful</h>

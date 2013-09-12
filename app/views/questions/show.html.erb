@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @question.content %>
+</p>
+
+<p>
+  <b>Survey:</b>
+  <%= @question.survey_id %>
+</p>
+
+<p>
+  <b>Qtype:</b>
+  <%= @question.qtype %>
+</p>
+
+<p>
+  <b>Mandatory:</b>
+  <%= @question.mandatory %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
