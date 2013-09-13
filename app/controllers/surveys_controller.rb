@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  before_filter :authenticate_user!,:except => [:take_survey,:survey_sucess]
   def index
     @surveys = Survey.all
   end
