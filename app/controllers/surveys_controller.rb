@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_filter :authenticate_user!,:except => [:take_survey,:survey_sucess]
+  before_filter :authenticate_user!,:except => [ :take_survey, :survey_sucess, :survey_capture]
   def index
     @surveys = Survey.all
   end
@@ -58,7 +58,7 @@ class SurveysController < ApplicationController
       answer = Answer.new(:question_id => question.id, :content => params[:answer][question.id.to_s],:email => params[:email],:survey_id => @survey.id)
       answer.save
     end
-      redirect_to "/survey_sucess?email=#{params[:email]}&id=#{@survey.id}"
+    redirect_to "/survey_sucess?email=#{params[:email]}&id=#{@survey.id}"
   end
 
   def survey_sucess
