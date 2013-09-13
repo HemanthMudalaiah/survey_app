@@ -44,10 +44,10 @@
 <h3>Responses</h3>
 <ol>
   <% for question in @survey.questions %>
+    <li><%= h question.content %></li>
     <% for answer in question.answers %>
     <ul>
       <li><%= h answer.email %></li>
-      <li><%= h question.content %></li>
       <li><%= h answer.content %></li>
     </ul><br/>
     <% end %>
