@@ -1,4 +1,9 @@
 Surveysays::Application.routes.draw do
+  resources :email_lists
+
+
+  devise_for :users
+
   resources :options
 
 
@@ -64,6 +69,7 @@ Surveysays::Application.routes.draw do
   post '/survey_capture' => 'surveys#survey_capture'
   get '/survey_capture' => 'surveys#survey_capture'
   match '/survey_sucess' => 'surveys#survey_sucess'
+  match '/send_survey' => 'surveys#send_survey'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

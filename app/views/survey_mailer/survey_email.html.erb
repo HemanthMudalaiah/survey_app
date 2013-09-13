@@ -1,0 +1,14 @@
+<html>
+  <head>
+  </head>
+  <body>
+    Survey Name<h3><%= @survey.name %></h3>
+    <br />
+    Survey Link:
+    <br />
+    <p>
+      <%= link_to @survey.name,url_for(:controller => "surveys", :action => "take_survey", :id => @survey.id,:only_path => false) %>
+    </p>
+  </body>
+</html>
+

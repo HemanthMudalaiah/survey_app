@@ -61,10 +61,14 @@ class SurveysController < ApplicationController
   end
 
   def survey_sucess
-     @answer = Answer.find_all_by_email_and_survey_id(params[:email],params[:id])
+    @answer = Answer.find_all_by_email_and_survey_id(params[:email],params[:id])
   end
 
-  def survey_response
+  def send_survey
     @survey = Survey.find_by_id(params[:id])
+    list = params[:email_id].split(',')
+    list.each do |list|
+      survey_mail = SurveyMailer.survey_email(@survey,list).deliver!
+    end
   end
 end
