@@ -50,3 +50,10 @@ group :production do
   # gems specifically for Heroku go here
   gem "pg"
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
+gem 'factory_girl_rails'
+
