@@ -23,16 +23,16 @@ describe SurveysController do
       response.should be_success
     end
 
-    # context "create" do
-    #   let(:params) { FactoryGirl.attributes_for(:survey)}
+    context "create" do
+      let(:params) { FactoryGirl.attributes_for(:survey)}
 
-    #   it "should create survey" do
-    #     survey = FactoryGirl.create(:survey)
-    #     post :create, :survey =>params
-    #     response_should be_redirect
-    #     flash[:notice].should == "Successfully created survey."
-    #   end
-    # end
+      it "should create survey" do
+        survey = FactoryGirl.create(:survey)
+        post :create, :survey =>params
+        response_should be_redirect
+        flash[:notice].should == "Successfully created survey."
+      end
+    end
   end
 
 end

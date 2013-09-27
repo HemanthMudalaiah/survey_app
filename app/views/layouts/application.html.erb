@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <p class="navbar-text pull-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tag %>
-    <%= yield(:head) %>
-  </head>
-  <body>
-    <div class="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style = "background-color : #efefef">
+<div class="container", style = "background-color : #eeeeee">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+      <h2>About Us</h2>
+      <p>An application which helps u create a survey and get responses which are alike depending on the insights of different people.</p>
     </div>
-  </body>
+  </div>
+</div>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/surveys">Survey Store</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Create Survey","/surveys/new" %></li>
+        </ul>
+        <p class="navbar-text pull-right">
+          <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.email %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'icon-edit btn btn-info' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'icon-signout btn btn-danger'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>

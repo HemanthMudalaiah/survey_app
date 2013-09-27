@@ -46,6 +46,11 @@ module Surveysays
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
     # config.active_record.schema_format = :sql
+    config.to_prepare do
+        Devise::SessionsController.layout "home"
+        Devise::RegistrationsController.layout "home"
+        Devise::ConfirmationsController.layout "home"
+    end
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models

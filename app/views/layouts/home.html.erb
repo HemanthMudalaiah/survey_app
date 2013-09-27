@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style = "background-color : #efefef">
+<div class="container", style = "background-color : #eeeeee">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+      <h2>About Us</h2>
+      <p>An application which helps u create a survey and get responses which are alike depending on the insights of different people.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

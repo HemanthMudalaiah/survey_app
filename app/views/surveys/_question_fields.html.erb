@@ -1,8 +1,8 @@
 <div class="fields">
   <p>
     <%= f.label :content, "Question" %>
-    <%= f.text_area :content, :rows => 3 %>
-    <%= link_to_remove_fields "remove", f %>
+    <%= f.text_area :content, :rows => 3, :placeholder => 'Enter the Question' %>
+    <%= link_to_remove_fields "Remove Question", f %>
   </p>
   <%= f.select :qtype, options_for_select([["Select answer type", ""], "Text Box","Multiple Choice(single answer)","Multiple Choice(multiple answers)"]), {}, :class => 'genForm_dropBox' %><br />
   <div id = "OptData" style="display: none">

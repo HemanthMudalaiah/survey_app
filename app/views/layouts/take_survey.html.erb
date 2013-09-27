@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag "take_survey", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style = "background-color : #efefef">
+  <div class="span9"><%= yield %></div>
+</body>
+</html>

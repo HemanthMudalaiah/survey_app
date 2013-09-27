@@ -6,6 +6,7 @@ class SurveysController < ApplicationController
 
   def take_survey
     @survey = Survey.find_by_id(params[:id])
+    render :layout => 'take_survey'
   end
 
   def show_survey

@@ -1,31 +1,31 @@
 <%= form_for @survey, :url => {:action => 'survey_capture'} , :html=>{:method => 'post'}, :id => 'survey' do |f| %>
-  <h4>Title Of the survey: <%= @survey.name %></h4><br /><br/>
-  Name <%= text_field_tag "name", nil,:class => "span2 validate[required] text-input" %><br />
-  Email&nbsp; <%= text_field_tag "email", nil,:class => "span2 validate[required] text-input" %><br />
-  <% @survey.questions.each_with_index do |q,i| %>
-    <%= i +1 %>
-    <%= q.content %><br />
-     <%if q.mandatory == 1 %>
-      <% class1 = 'validate[required]' %>
-     <% else %>
-      <% class1 = '' %>
-     <% end %>
-    <% if q.qtype == "Text Box" %>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag "answer[#{q.id}]",nil, :class => "#{class1}" %> <br/>
-    <% elsif q.qtype == "Multiple Choice(single answer)" %>
-      <% q.options.each_with_index do |q1| %>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag "answer[#{q.id}]",q1.option, false, :class => "#{class1}" %>
-      <%= q1.option %><br />
+    <p class='lead'>Title of the Survey:<%= @survey.name %></p><br />
+    <strong>Name <%= text_field_tag "name", nil,:class => "span2 validate[required] text-input",:placeholder => "Name" %><br /></strong>
+    <strong>Email&nbsp; <%= text_field_tag "email", nil,:class => "span2 validate[required] text-input",:placeholder => "Email" %><br /></strong><br />
+    <p class="text-error"><b>Questions</b></p>
+    <% @survey.questions.each_with_index do |q,i| %>
+      <p class="text-info"><%= i + 1 %>. <%= q.content %><br /></p>
+       <%if q.mandatory == 1 %>
+        <% class1 = 'validate[required]' %>
+       <% else %>
+        <% class1 = '' %>
+       <% end %>
+      <% if q.qtype == "Text Box" %>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag "answer[#{q.id}]",nil, :class => "#{class1}" %>
+      <% elsif q.qtype == "Multiple Choice(single answer)" %>
+        <% q.options.each_with_index do |q1| %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag "answer[#{q.id}]",q1.option, false, :class => "#{class1}" %>
+        <%= q1.option %><br />
+        <% end %>
+      <% elsif q.qtype == "Multiple Choice(multiple answers)" %>
+        <% q.options.each_with_index do |q1| %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag "answer[#{q.id}][]",q1.option, false, :class => "#{class1}" %>
+        <%= q1.option %><br />
+        <% end %>
       <% end %>
-    <% elsif q.qtype == "Multiple Choice(multiple answers)" %>
-      <% q.options.each_with_index do |q1| %>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag "answer[#{q.id}][]",q1.option, false, :class => "#{class1}" %>
-      <%= q1.option %><br />
-      <% end %>
-    <% end %>
-    <%= hidden_field_tag "id",@survey.id %>
-  <% end %><br/>
-  <p><%= f.submit "Submit" %></p>
+      <%= hidden_field_tag "id",@survey.id %>
+    <% end %><br/>
+    <%= f.submit "Submit",:class => "btn btn-success" %>
 <% end %>
 
 <%= javascript_tag :defer => 'defer' do %>
@@ -33,3 +33,4 @@
   $(".edit_survey").validationEngine();
   });
 <% end %>
+

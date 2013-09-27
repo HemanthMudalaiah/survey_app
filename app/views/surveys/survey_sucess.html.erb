@@ -1,11 +1,12 @@
 <ol>
+  <p>Questions</p>
   <% for answer in @answer %>
     <ul>
-      <li><%= h answer.question.content %></li>
-      <%= h answer.content %>
+      <li><p class="muted"><%= h answer.question.content %></p></li>
+      <p class="text-warning"><%= h answer.content %></p>
     </ul>
   <% end %>
 </ol>
 
 
-<h>Survey Successful</h>
+<p class="text-success">Thanks for taking the survey.<br/><strong>Survey Successful !!</strong></p>
